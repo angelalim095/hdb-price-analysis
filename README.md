@@ -4,65 +4,103 @@ This project analyzes **Singapore HDB resale transaction data from 2017 to 2025*
 
 ## Project objective
 
-The goals of this project are to:
+The objectives of this project are to:
 
 - explore HDB resale price trends over time
 - identify factors associated with higher resale prices
 - test whether mature estates have significantly different resale prices from non-mature estates
 - compare baseline linear regression with richer feature-based regression and Random Forest
 
+The goal is to demonstrate practical data science skills such as:
+
+- data cleaning
+- feature engineering
+- statistical testing
+- regression modeling
+- machine learning
+
 ## Dataset
 
 The dataset contains HDB resale transaction records from **2017 to 2025**.
 
-Example fields used in the analysis include:
+Main variables include:
 
-- `month`
+- `transaction month`
 - `town`
 - `flat_type`
-- `storey_range`
+- `flat_model`
 - `floor_area_sqm`
 - `lease_commence_date`
 - `resale_price`
 
 ## Project workflow
 
-1. Data loading and cleaning
-2. Feature engineering
-3. Exploratory data analysis
-4. Hypothesis testing
-5. Baseline OLS regression
-6. Expanded OLS regression with encoded categorical features
-7. Random Forest regression
-8. Model comparison and feature importance review
+## Data loading and cleaning
 
-## Key engineered features
+- Removed missing values and duplicated rows
+- Converted date columns
 
+## Feature engineering
+
+Created new variables:
 - **year**: extracted from transaction month
 - **remaining_years**: estimated lease remaining using transaction year
 - **is_mature**: binary flag for whether the town is a mature estate
 
-## Main insights
+## Exploratory Data Analysis
 
-- HDB resale prices generally increased over the period studied
-- Mature estates showed higher average resale prices than non-mature estates
-- A feature-rich regression model performed better than a simple baseline OLS model
-- Random Forest delivered the best predictive performance among the tested models
+The analysis explores relationships between housing prices and factors such as:
+- flat size
+- lease age
+- location
+- mature vs non-mature estates
 
-## Models used
+Key visualizations include:
+- price trends over time
+- price vs floor area
+- price distribution
 
-### 1. Baseline OLS Regression
-Uses a small set of interpretable predictors:
-- remaining years
-- floor area
-- mature estate flag
+## Hypothesis Testing
 
-### 2. Expanded OLS Regression
-Adds one-hot encoded categorical predictors such as:
-- flat type
-- flat model
-- storey range
-- town
+A two-sample t-test was performed to test whether resale prices differ between mature and non-mature estates.
+- Result: Prices in mature estates are significantly higher on average.
 
-### 3. Random Forest Regressor
-Captures nonlinear effects and feature interactions, improving predictive accuracy.
+## Predictive Models
+
+Three models were built and compared.
+
+## 1. Baseline Linear Regression
+
+- Features:
+  floor_area_sqm,
+  remaining_years,
+  is_mature
+- Purpose: establish a baseline prediction model.
+
+## 2. Expanded Linear Regression
+
+- Additional categorical variables were included.
+- Purpose: capture housing characteristics and location effects.
+
+## 3. Random Forest Regressor
+
+- A machine learning model capable of capturing nonlinear relationships.
+- Random Forest achieved the best prediction accuracy.
+
+## Technologies Used
+- Python
+- pandas
+- NumPy
+- Plotly
+- scikit-learn
+- statsmodels
+- SciPy
+
+## Key Insights
+
+- Larger flats tend to have higher resale prices.
+- Mature estates command higher prices.
+- Remaining lease length significantly affects resale value.
+- Random Forest provides better predictive performance than simple linear regression.
+
+
