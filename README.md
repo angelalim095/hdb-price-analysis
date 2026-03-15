@@ -60,6 +60,10 @@ Key visualizations include:
 - price vs floor area
 - price distribution
 
+## Example Visualization
+
+![HDB Price Trend](price_trend.png)
+
 ## Hypothesis Testing
 
 A two-sample t-test was performed to test whether resale prices differ between mature and non-mature estates.
